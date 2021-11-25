@@ -111,26 +111,15 @@ Page({
   },
   search:function(e){
     //先到数据库里面查询结果，然后跳转到result页面
-    var depcity = e.detail.value.depcity;
-    var arrcity = e.detail.value.arrcity;
-    var deptime = e.detail.value.deptime;
-    app.globalData.dep=depcity;
-    app.globalData.arr = arrcity;
-    app.globalData.deptime = deptime;
     wx.request({
-      url: 'http://localhost:8080/searchWx',
-      data: { depCity: depcity, arrCity: arrcity, depTime: deptime },
       success:function(res){
       //console.log(res.data[1]);
-      console.log(res)
-      app.globalData.port = res.data[0];
-      app.globalData.flight = res.data[1];
       wx.navigateTo({
         url: '/pages/result/result',
       })
       },
       fail:function(res){
-        console.log(res)
+
         wx.navigateTo({
           url: '/pages/result/result',
         })
